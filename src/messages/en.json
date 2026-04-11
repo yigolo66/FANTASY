@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "tours": "Tours",
+    "blog": "Blog",
+    "contact": "Contact",
+    "book": "Book now"
+  },
+  "hero": {
+    "tag": "Dominican Republic",
+    "title1": "Live the best",
+    "title2": "version of",
+    "title3": "Punta Cana",
+    "subtitle": "Personalized tours, transparent prices and unforgettable memories.",
+    "cta_tours": "See all tours",
+    "cta_wa": "WhatsApp",
+    "social_proof": "+12,458 happy travelers this month"
+  },
+  "popular": {
+    "tag": "Most booked",
+    "title": "Most popular tours",
+    "see_all": "See all →"
+  },
+  "destinations": {
+    "tag": "Explore",
+    "title": "Featured destinations",
+    "tours_available": "tours available"
+  },
+  "why": {
+    "title": "Why choose us?",
+    "item1_title": "Personalized tours",
+    "item1_desc": "We tailor every experience to your tastes and budget.",
+    "item2_title": "Transparent prices",
+    "item2_desc": "No surprises. What you see is what you pay.",
+    "item3_title": "Expert local guides",
+    "item3_desc": "Over 10 years of experience in the Caribbean."
+  },
+  "testimonials": {
+    "tag": "Real reviews",
+    "title": "What our travelers say"
+  },
+  "blog": {
+    "tag": "Travel tips",
+    "title": "Travel blog",
+    "see_all": "See all →",
+    "read_time": "read"
+  },
+  "cta": {
+    "title": "Ready for your adventure?",
+    "subtitle": "Message us on WhatsApp and we'll help you plan the perfect trip.",
+    "button": "Chat on WhatsApp"
+  },
+  "footer": {
+    "desc": "Personalized tours in the Caribbean. Over 12,000 happy travelers.",
+    "destinations": "Destinations",
+    "tours": "Tours",
+    "contact": "Contact",
+    "address": "Punta Cana, Dominican Republic",
+    "hours": "Mon–Sun: 8:00am – 8:00pm",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  }
+}
