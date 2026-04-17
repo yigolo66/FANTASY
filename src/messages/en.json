@@ -61,5 +61,40 @@
     "rights": "All rights reserved.",
     "privacy": "Privacy",
     "terms": "Terms"
+  },
+  "checkout": {
+    "title": "Complete your booking",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone / WhatsApp",
+    "date": "Tour date",
+    "people": "Number of people",
+    "submit": "Pay now",
+    "processing": "Processing...",
+    "summary": "Order summary",
+    "unitPrice": "Price per person",
+    "total": "Total",
+    "errors": {
+      "required": "Required field",
+      "invalidEmail": "Invalid email format",
+      "futureDate": "Date must be in the future",
+      "peopleRange": "Between 1 and 20 people"
+    }
+  },
+  "success": {
+    "title": "Booking confirmed!",
+    "message": "Your payment was processed successfully.",
+    "tour": "Tour",
+    "date": "Date",
+    "people": "People",
+    "total": "Total paid",
+    "whatsapp": "Contact via WhatsApp",
+    "home": "Back to home"
+  },
+  "cancel": {
+    "title": "Payment cancelled",
+    "message": "Your payment was cancelled. You can try again.",
+    "retry": "Try again",
+    "whatsapp": "Book via WhatsApp"
   }
 }

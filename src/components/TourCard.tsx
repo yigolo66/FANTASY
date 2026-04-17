@@ -45,7 +45,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <span className="text-gray-400 text-sm"> – ${tour.maxPrice}</span>
           </div>
           <Link
-            href={`/contacto?tour=${tour.slug}`}
+            href={`/checkout?tour=${tour.slug}`}
             className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-2xl text-sm font-medium transition-all flex items-center gap-1"
           >
             Reservar →

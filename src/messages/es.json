@@ -61,5 +61,40 @@
     "rights": "Todos los derechos reservados.",
     "privacy": "Privacidad",
     "terms": "Términos"
+  },
+  "checkout": {
+    "title": "Completa tu reserva",
+    "fullName": "Nombre completo",
+    "email": "Email",
+    "phone": "Teléfono / WhatsApp",
+    "date": "Fecha del tour",
+    "people": "Número de personas",
+    "submit": "Pagar ahora",
+    "processing": "Procesando...",
+    "summary": "Resumen de tu orden",
+    "unitPrice": "Precio por persona",
+    "total": "Total",
+    "errors": {
+      "required": "Campo requerido",
+      "invalidEmail": "Formato de email inválido",
+      "futureDate": "La fecha debe ser futura",
+      "peopleRange": "Entre 1 y 20 personas"
+    }
+  },
+  "success": {
+    "title": "¡Reserva confirmada!",
+    "message": "Tu pago fue procesado exitosamente.",
+    "tour": "Tour",
+    "date": "Fecha",
+    "people": "Personas",
+    "total": "Total pagado",
+    "whatsapp": "Contactar por WhatsApp",
+    "home": "Volver al inicio"
+  },
+  "cancel": {
+    "title": "Pago cancelado",
+    "message": "Tu pago fue cancelado. Puedes intentar de nuevo.",
+    "retry": "Intentar de nuevo",
+    "whatsapp": "Reservar por WhatsApp"
   }
 }
