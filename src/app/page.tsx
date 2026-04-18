@@ -133,7 +133,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-amber-400 mb-3">{"★".repeat(t.rating)}</div>
-                <p className="text-gray-600 text-sm leading-relaxed">"{t.text}"</p>
+                <p className="text-gray-600 text-sm leading-relaxed">&ldquo;{t.text}&rdquo;</p>
               </div>
             ))}
           </div>
