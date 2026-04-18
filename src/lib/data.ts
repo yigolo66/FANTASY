@@ -198,7 +198,7 @@ export const destinos = [
     id: 1,
     name: "Punta Cana",
     country: "República Dominicana",
-    image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&q=80",
+    image: "https://wallpapers.com/images/hd/north-america-punta-cana-xcmwb7gxu6seyzbr.jpg",
     tours: 12,
     lat: 18.5601,
     lng: -68.3725,
