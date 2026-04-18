@@ -12,6 +12,7 @@ const nextConfig = {
       { protocol: "https", hostname: "media.tacdn.com" },
       { protocol: "https", hostname: "assets.simpleviewinc.com" },
       { protocol: "https", hostname: "wallpapers.com" },
+      { protocol: "https", hostname: "everythingpuntacana.com" },
     ],
   },
 };

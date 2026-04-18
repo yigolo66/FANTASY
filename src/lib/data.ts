@@ -9,7 +9,7 @@ export const tours = [
     maxPrice: 179.99,
     rating: 5.0,
     reviews: 312,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    image: "https://everythingpuntacana.com/wp-content/gallery/la-romana-charters-adventure-82/private-catamaran-punta-cana-01.jpg",
     description: "All-inclusive full-day getaway to Saona Island. Salidas: 8:00 AM o 8:30 AM.",
     destino: "Punta Cana",
     badge: "Más popular",
