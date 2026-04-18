@@ -1,10 +1,11 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
 
-export default function CancelPage() {
+function CancelContent() {
   const { t } = useI18n();
   const searchParams = useSearchParams();
   const tourSlug = searchParams.get("tour") ?? "";
@@ -13,7 +14,6 @@ export default function CancelPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 text-center">
-      {/* Cancel icon */}
       <div className="mx-auto w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6">
         <svg
           className="w-10 h-10 text-red-600"
@@ -34,7 +34,6 @@ export default function CancelPage() {
       <h1 className="text-3xl font-bold mb-2">{t.cancel.title}</h1>
       <p className="text-gray-500 mb-8">{t.cancel.message}</p>
 
-      {/* Action buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           href={tourSlug ? `/checkout?tour=${tourSlug}` : "/tours"}
@@ -42,7 +41,6 @@ export default function CancelPage() {
         >
           {t.cancel.retry}
         </Link>
-
         <a
           href={whatsappUrl}
           target="_blank"
@@ -57,5 +55,13 @@ export default function CancelPage() {
         </a>
       </div>
     </div>
+  );
+}
+
+export default function CancelPage() {
+  return (
+    <Suspense fallback={<div className="max-w-2xl mx-auto px-6 py-16 text-center">Cargando...</div>}>
+      <CancelContent />
+    </Suspense>
   );
 }
