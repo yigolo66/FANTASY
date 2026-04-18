@@ -41,7 +41,7 @@ export const tours = [
     maxPrice: 79.99,
     rating: 4.8,
     reviews: 145,
-    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
+    image: "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_962,q_65,w_640/v1/clients/whitemountainsnh/ThingsToDo_HorsebackRiding_116c3aa9-1131-4f96-a3dd-64742a4e59bc.jpg",
     description: "Guided trail ride through Punta Cana landscapes. Salidas: 9:00 AM, 11:00 AM, 12:30 PM.",
     destino: "Punta Cana",
     badge: null,
