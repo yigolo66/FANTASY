@@ -208,7 +208,7 @@ export const destinos = [
     id: 2,
     name: "Santo Domingo",
     country: "República Dominicana",
-    image: "https://images.unsplash.com/photo-1569700802224-f4e200914168?w=800&q=80",
+    image: "https://media.tacdn.com/media/attractions-splice-spp-674x446/0f/04/56/f5.jpg",
     tours: 8,
     lat: 18.4861,
     lng: -69.9312,
