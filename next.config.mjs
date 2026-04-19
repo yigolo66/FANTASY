@@ -13,6 +13,7 @@ const nextConfig = {
       { protocol: "https", hostname: "assets.simpleviewinc.com" },
       { protocol: "https", hostname: "wallpapers.com" },
       { protocol: "https", hostname: "everythingpuntacana.com" },
+      { protocol: "https", hostname: "cdn2.veltra.com" },
     ],
   },
 };

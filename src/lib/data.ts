@@ -153,7 +153,7 @@ export const tours = [
     maxPrice: 84.99,
     rating: 4.7,
     reviews: 134,
-    image: "https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80",
+    image: "https://cdn2.veltra.com/ptr/20230221233952_1503055499_1230_0.jpg?imwidth=550&impolicy=custom",
     description: "Dune buggy thrills through Punta Cana. Salidas: 7:00 AM o 1:00 PM.",
     destino: "Punta Cana",
     badge: null,
