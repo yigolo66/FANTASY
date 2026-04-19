@@ -313,7 +313,7 @@ export const tours = [
     maxPrice: 95,
     rating: 4.7,
     reviews: 112,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/97/b0/34/caption.jpg?w=1200&h=-1&s=1",
     description: "Recorre la Zona Colonial, el Malecón y los monumentos históricos.",
     destino: "Santo Domingo",
     badge: null,
