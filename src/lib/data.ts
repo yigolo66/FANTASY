@@ -169,7 +169,7 @@ export const tours = [
     maxPrice: 149.99,
     rating: 4.6,
     reviews: 88,
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80",
+    image: "https://www.ridebooker.com/images/vehicles/whistler-shuttle.webp",
     description: "Airport/hotel transfers. Mínimo 4 personas. Horario flexible.",
     destino: "Punta Cana",
     badge: null,
