@@ -57,7 +57,7 @@ export default function Footer() {
             <li>
               <a href="https://wa.me/18497391699" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-2xl text-sm font-medium mt-2 transition-colors">
-                💬 WhatsApp
+                💬 WhatsApp · Hilary +1 849-739-1699
               </a>
             </li>
           </ul>

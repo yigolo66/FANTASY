@@ -52,8 +52,8 @@ export default function ContactoPage() {
           >
             <span className="text-4xl">💬</span>
             <div>
-              <p className="font-semibold text-lg">Escríbenos por WhatsApp</p>
-              <p className="text-green-100 text-sm">Respuesta inmediata · Disponible 7 días</p>
+              <p className="font-semibold text-lg">Escríbenos por WhatsApp · Hilary</p>
+              <p className="text-green-100 text-sm">+1 849-739-1699 · Respuesta inmediata · Disponible 7 días</p>
             </div>
             <span className="ml-auto text-2xl group-hover:translate-x-1 transition-transform">→</span>
           </a>
