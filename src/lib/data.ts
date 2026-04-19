@@ -329,7 +329,7 @@ export const tours = [
     maxPrice: 95,
     rating: 4.8,
     reviews: 89,
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP_MPQs6DQgiXLObfLwjFxUo6SPbIUiF-lwg&s",
     description: "Vuela sobre la selva en tirolesas de alta velocidad.",
     destino: "Punta Cana",
     badge: null,
