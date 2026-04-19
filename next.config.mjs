@@ -15,6 +15,7 @@ const nextConfig = {
       { protocol: "https", hostname: "everythingpuntacana.com" },
       { protocol: "https", hostname: "cdn2.veltra.com" },
       { protocol: "https", hostname: "www.ridebooker.com" },
+      { protocol: "https", hostname: "cdn.getyourguide.com" },
     ],
   },
 };

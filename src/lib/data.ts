@@ -281,7 +281,7 @@ export const tours = [
     maxPrice: 90,
     rating: 4.8,
     reviews: 67,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,height=450,dpr=1/tour_img/8398d6d6d7d396a8580ba1595b56ddc3812bde9abadd2e913ae1061321b03fe6.jpeg",
     description: "Tour privado de lujo por Higüey: cultura, historia y compras locales.",
     destino: "Punta Cana",
     badge: "Top Pick",
