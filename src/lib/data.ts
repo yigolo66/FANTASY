@@ -105,7 +105,7 @@ export const tours = [
     maxPrice: 74.99,
     rating: 4.8,
     reviews: 167,
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+    image: "https://media.tacdn.com/media/attractions-splice-spp-674x446/0f/39/78/39.jpg",
     description: "Todo incluido con barra libre y música. Salidas: 11:30 AM o 2:30 PM.",
     destino: "Punta Cana",
     badge: null,
