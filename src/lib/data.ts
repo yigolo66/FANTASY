@@ -217,7 +217,7 @@ export const tours = [
     maxPrice: 59,
     rating: 4.7,
     reviews: 203,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzpVzP67gT63_6u9LeIHBnk4zYSUERzQmdmA&s",
     description: "Fiesta en catamarán con snorkel y barra libre.",
     destino: "Punta Cana",
     badge: "Top Pick",
