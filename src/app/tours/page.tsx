@@ -3,13 +3,13 @@ import { useState } from "react";
 import TourCard from "@/components/TourCard";
 import { tours } from "@/lib/data";
 
-const categorias = ["Todos", "Isla", "Aventura", "Náutico", "Cultural", "Naturaleza"];
+const categorias = ["Todos", "Isla", "Aventura", "Náutico", "Cultural", "Naturaleza", "Entretenimiento", "Transporte"];
 const destinos = ["Todos", "Punta Cana", "Santo Domingo", "Samaná"];
 
 export default function ToursPage() {
   const [categoria, setCategoria] = useState("Todos");
   const [destino, setDestino] = useState("Todos");
-  const [maxPrecio, setMaxPrecio] = useState(300);
+  const [maxPrecio, setMaxPrecio] = useState(1000);
   const [busqueda, setBusqueda] = useState("");
 
   const filtrados = tours.filter((t) => {
@@ -61,7 +61,7 @@ export default function ToursPage() {
         <div className="flex items-center gap-3 min-w-[200px]">
           <span className="text-sm text-gray-500 whitespace-nowrap">Hasta ${maxPrecio}</span>
           <input
-            type="range" min={50} max={300} step={10}
+            type="range" min={50} max={1000} step={10}
             value={maxPrecio}
             onChange={(e) => setMaxPrecio(Number(e.target.value))}
             className="flex-1 accent-primary"

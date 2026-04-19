@@ -16,4 +16,14 @@ const config: Config = {
   ],
 };
 
-export default createJestConfig(config);
+const jestConfig = async () => {
+  const nextConfig = await createJestConfig(config)();
+  return {
+    ...nextConfig,
+    transformIgnorePatterns: [
+      '/node_modules/(?!jose/)',
+    ],
+  };
+};
+
+export default jestConfig;
