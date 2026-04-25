@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useI18n } from "@/lib/i18n";
-import { Tour } from "@/lib/checkout-utils";
+import { Tour, calculateTotal } from "@/lib/checkout-utils";
 import OrderSummary from "./OrderSummary";
 
 interface CheckoutFormProps {
@@ -191,7 +192,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
           </div>
         </div>
 
-        {/* Submit */}
+        {/* Stripe Submit */}
         <button
           type="submit"
           disabled={isSubmitting}
@@ -226,6 +227,39 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             t.checkout.submit
           )}
         </button>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3">
+          <div className="flex-1 border-t border-gray-200" />
+          <span className="text-sm text-gray-400">o pagar con</span>
+          <div className="flex-1 border-t border-gray-200" />
+        </div>
+
+        {/* PayPal Button */}
+        <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "USD" }}>
+          <PayPalButtons
+            style={{ layout: "horizontal", color: "gold", shape: "pill", label: "paypal", height: 50 }}
+            createOrder={(_data, actions) => {
+              const total = calculateTotal(tour.price, Number(numberOfPeople) || 1);
+              return actions.order.create({
+                intent: "CAPTURE",
+                purchase_units: [{
+                  description: tour.title,
+                  amount: { currency_code: "USD", value: total.toFixed(2) },
+                }],
+              });
+            }}
+            onApprove={async (_data, actions) => {
+              const order = await actions.order?.capture();
+              if (order?.status === "COMPLETED") {
+                window.location.href = `/checkout/success?paypal=true&tour=${tour.slug}`;
+              }
+            }}
+            onError={() => {
+              setServerError("Error con PayPal. Intenta de nuevo o usa tarjeta.");
+            }}
+          />
+        </PayPalScriptProvider>
       </form>
 
       {/* Order Summary sidebar */}
