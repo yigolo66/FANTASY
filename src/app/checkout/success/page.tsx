@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { formatPriceUSD } from "@/lib/checkout-utils";
 import SuccessContent from "@/components/SuccessContent";
 
@@ -20,7 +20,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   let totalPaid = "";
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(session_id);
+    const session = await getStripe().checkout.sessions.retrieve(session_id);
 
     tourName = session.metadata?.tour_slug ?? "";
     tourDate = session.metadata?.tour_date ?? "";

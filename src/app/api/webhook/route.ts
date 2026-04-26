@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import Stripe from "stripe";
 
 // In-memory Set for idempotency — ignores duplicate event IDs
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify signature with Stripe
-    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+    event = getStripe().webhooks.constructEvent(rawBody, signature, webhookSecret);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error(`Webhook signature verification failed: ${message}`);

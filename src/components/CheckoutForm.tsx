@@ -25,9 +25,9 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
 
   const {
     register,
-    handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
+    trigger,
   } = useForm<CheckoutFormData>({
     defaultValues: {
       fullName: "",
@@ -39,37 +39,6 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
   });
 
   const numberOfPeople = watch("numberOfPeople");
-
-  const onSubmit = async (data: CheckoutFormData) => {
-    setServerError(null);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tourSlug: tour.slug,
-          fullName: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          tourDate: data.tourDate,
-          numberOfPeople: Number(data.numberOfPeople),
-        }),
-      });
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Error al procesar el pago");
-      }
-
-      const { url } = await res.json();
-      window.location.href = url;
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Error de conexión. Intenta de nuevo.";
-      setServerError(message);
-    }
-  };
-
   const today = new Date().toISOString().split("T")[0];
 
   const inputClass =
@@ -78,10 +47,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Form */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 space-y-5"
-      >
+      <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 space-y-5">
         <h2 className="text-2xl font-semibold mb-2">{t.checkout.title}</h2>
 
         {serverError && (
@@ -96,9 +62,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             {t.checkout.fullName} *
           </label>
           <input
-            {...register("fullName", {
-              required: t.checkout.errors.required,
-            })}
+            {...register("fullName", { required: t.checkout.errors.required })}
             placeholder={t.checkout.fullName}
             className={inputClass}
           />
@@ -116,10 +80,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             <input
               {...register("email", {
                 required: t.checkout.errors.required,
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: t.checkout.errors.invalidEmail,
-                },
+                pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t.checkout.errors.invalidEmail },
               })}
               type="email"
               placeholder="tu@email.com"
@@ -134,9 +95,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
               {t.checkout.phone} *
             </label>
             <input
-              {...register("phone", {
-                required: t.checkout.errors.required,
-              })}
+              {...register("phone", { required: t.checkout.errors.required })}
               placeholder="+1 809 000 0000"
               className={inputClass}
             />
@@ -155,10 +114,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             <input
               {...register("tourDate", {
                 required: t.checkout.errors.required,
-                validate: (value) => {
-                  if (value <= today) return t.checkout.errors.futureDate;
-                  return true;
-                },
+                validate: (value) => value > today || t.checkout.errors.futureDate,
               })}
               type="date"
               min={today}
@@ -185,61 +141,18 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
               className={inputClass}
             />
             {errors.numberOfPeople && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.numberOfPeople.message}
-              </p>
+              <p className="text-red-500 text-xs mt-1">{errors.numberOfPeople.message}</p>
             )}
           </div>
-        </div>
-
-        {/* Stripe Submit */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary-dark disabled:opacity-60 text-white py-4 rounded-2xl font-semibold text-lg transition-all flex items-center justify-center gap-2"
-        >
-          {isSubmitting ? (
-            <>
-              <svg
-                className="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                />
-              </svg>
-              {t.checkout.processing}
-            </>
-          ) : (
-            t.checkout.submit
-          )}
-        </button>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 border-t border-gray-200" />
-          <span className="text-sm text-gray-400">o pagar con</span>
-          <div className="flex-1 border-t border-gray-200" />
         </div>
 
         {/* PayPal Button */}
         <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "USD" }}>
           <PayPalButtons
             style={{ layout: "horizontal", color: "gold", shape: "pill", label: "paypal", height: 50 }}
-            createOrder={(_data, actions) => {
+            createOrder={async (_data, actions) => {
+              const valid = await trigger();
+              if (!valid) throw new Error("Formulario inválido");
               const total = calculateTotal(tour.price, Number(numberOfPeople) || 1);
               return actions.order.create({
                 intent: "CAPTURE",
@@ -256,11 +169,11 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
               }
             }}
             onError={() => {
-              setServerError("Error con PayPal. Intenta de nuevo o usa tarjeta.");
+              setServerError("Error con PayPal. Intenta de nuevo.");
             }}
           />
         </PayPalScriptProvider>
-      </form>
+      </div>
 
       {/* Order Summary sidebar */}
       <div className="lg:col-span-1">

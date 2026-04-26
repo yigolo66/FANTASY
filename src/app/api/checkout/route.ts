@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import {
   validateCheckoutData,
   sanitizeString,
@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
     const cancelUrl = `${origin}/checkout/cancel?tour=${body.tourSlug}`;
 
     // Create Stripe Checkout Session
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
