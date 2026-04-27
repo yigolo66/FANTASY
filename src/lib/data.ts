@@ -580,24 +580,24 @@ export const destinos = [
 
 export const testimonios = [
   {
-    name: "Maria Garcia",
-    country: "Spain",
+    name: "Sarah Thompson",
+    country: "New York, USA",
     avatar: "https://i.pravatar.cc/80?img=5",
     rating: 5,
     text: "The Saona Island tour was absolutely magical. The natural pool is incredible and the guides are very professional.",
     tour: "Saona Island",
   },
   {
-    name: "Carlos Rodriguez",
-    country: "Mexico",
+    name: "Mike Johnson",
+    country: "Miami, USA",
     avatar: "https://i.pravatar.cc/80?img=12",
     rating: 5,
     text: "Swimming with dolphins was the experience of a lifetime. My kids won't stop talking about it. 100% recommended!",
     tour: "Swimming with Dolphins",
   },
   {
-    name: "Ana Martinez",
-    country: "Colombia",
+    name: "Emily Davis",
+    country: "Los Angeles, USA",
     avatar: "https://i.pravatar.cc/80?img=9",
     rating: 5,
     text: "The sunset catamaran with open bar was perfect for our honeymoon. Thank you Fantasy Travels.",
