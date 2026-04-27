@@ -5,13 +5,13 @@ import Footer from "@/components/Footer";
 import { I18nProvider } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: "Fantasy Travels – Tours en Punta Cana 2026",
+  title: "Fantasy Travels – Tours in Punta Cana 2026",
   description:
-    "Descubre los mejores tours en Punta Cana. Isla Saona, delfines, catamarán y más. Reserva online con precios transparentes y guías locales.",
-  keywords: "tours punta cana, isla saona, excursiones punta cana, viajes caribe 2026",
+    "Discover the best tours in Punta Cana. Saona Island, dolphins, catamaran and more. Book online with transparent prices and local guides.",
+  keywords: "punta cana tours, saona island, punta cana excursions, caribbean travel 2026",
   openGraph: {
-    title: "Fantasy Travels – Tours en Punta Cana 2026",
-    description: "Los mejores tours en Punta Cana con guías locales.",
+    title: "Fantasy Travels – Tours in Punta Cana 2026",
+    description: "The best tours in Punta Cana with local guides.",
     url: "https://fantasytravels.com",
     siteName: "Fantasy Travels",
     images: [{ url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200" }],
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <head>
-        {/* Google Analytics – reemplaza G-XXXXXXXXXX con tu ID real */}
+        {/* Google Analytics – replace G-XXXXXXXXXX with your real ID */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
         <script
           dangerouslySetInnerHTML={{
@@ -36,9 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <main>{children}</main>
           <Footer />
-          {/* WhatsApp flotante */}
+          {/* Floating WhatsApp */}
           <a
-            href="https://wa.me/18497391699?text=Hola,%20quiero%20información%20sobre%20tours"
+            href="https://wa.me/18497391699?text=Hi,%20I%20want%20to%20know%20about%20tours"
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition-transform"

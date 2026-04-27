@@ -18,6 +18,7 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.getyourguide.com" },
       { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
       { protocol: "https", hostname: "dynamic-media-cdn.tripadvisor.com" },
+      { protocol: "https", hostname: "maltaislandtours.com" },
     ],
   },
 };

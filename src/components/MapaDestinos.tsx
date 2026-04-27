@@ -39,7 +39,7 @@ export default function MapaDestinos({ destinos }: { destinos: Destino[] }) {
       destinos.forEach((d) => {
         L.marker([d.lat, d.lng])
           .addTo(map)
-          .bindPopup(`<b>${d.name}</b><br>${d.tours} tours disponibles<br><small>${d.description}</small>`);
+          .bindPopup(`<b>${d.name}</b><br>${d.tours} tours available<br><small>${d.description}</small>`);
       });
     });
 

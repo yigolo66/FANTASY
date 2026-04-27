@@ -41,7 +41,7 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">{t.footer.tours}</h4>
           <ul className="space-y-2 text-sm">
-            {["Isla Saona", "Nado con Delfines", "Catamarán Sunset", "Aventura Buggy"].map((tour) => (
+            {["Saona Island", "Swimming with Dolphins", "Catamaran Sunset", "Buggy Adventure"].map((tour) => (
               <li key={tour}><Link href="/tours" className="hover:text-primary transition-colors">{tour}</Link></li>
             ))}
           </ul>

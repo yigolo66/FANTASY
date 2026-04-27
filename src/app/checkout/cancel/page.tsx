@@ -60,7 +60,7 @@ function CancelContent() {
 
 export default function CancelPage() {
   return (
-    <Suspense fallback={<div className="max-w-2xl mx-auto px-6 py-16 text-center">Cargando...</div>}>
+    <Suspense fallback={<div className="max-w-2xl mx-auto px-6 py-16 text-center">Loading...</div>}>
       <CancelContent />
     </Suspense>
   );

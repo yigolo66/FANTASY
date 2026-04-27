@@ -152,7 +152,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             style={{ layout: "horizontal", color: "gold", shape: "pill", label: "paypal", height: 50 }}
             createOrder={async (_data, actions) => {
               const valid = await trigger();
-              if (!valid) throw new Error("Formulario inválido");
+              if (!valid) throw new Error("Invalid form");
               const total = calculateTotal(tour.price, Number(numberOfPeople) || 1);
               return actions.order.create({
                 intent: "CAPTURE",
@@ -169,7 +169,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
               }
             }}
             onError={() => {
-              setServerError("Error con PayPal. Intenta de nuevo.");
+              setServerError("PayPal error. Please try again.");
             }}
           />
         </PayPalScriptProvider>

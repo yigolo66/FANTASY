@@ -37,7 +37,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
         <p className="text-gray-500 text-sm mb-3 flex-1">{tour.description}</p>
         <div className="flex items-center gap-1 text-amber-400 text-sm mb-4">
           {"★".repeat(Math.floor(tour.rating))}
-          <span className="text-gray-400 ml-1">({tour.reviews} reseñas)</span>
+          <span className="text-gray-400 ml-1">({tour.reviews} reviews)</span>
         </div>
         <div className="flex justify-between items-center">
           <div>
@@ -48,7 +48,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             href={`/checkout?tour=${tour.slug}`}
             className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-2xl text-sm font-medium transition-all flex items-center gap-1"
           >
-            Reservar →
+            Book now →
           </Link>
         </div>
       </div>

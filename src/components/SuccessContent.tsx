@@ -19,7 +19,7 @@ export default function SuccessContent({
   const { t } = useI18n();
 
   const whatsappUrl = `https://wa.me/18497391699?text=${encodeURIComponent(
-    `Hola, acabo de reservar: ${tourName} - ${tourDate}`
+    `Hi, I just booked: ${tourName} - ${tourDate}`
   )}`;
 
   return (

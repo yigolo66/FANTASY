@@ -54,7 +54,7 @@ export default function Navbar() {
           >
             {lang === "es" ? "EN" : "ES"}
           </button>
-          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Menú">
+          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Menu">
             <span className="block w-6 h-0.5 bg-gray-700 mb-1.5" />
             <span className="block w-6 h-0.5 bg-gray-700 mb-1.5" />
             <span className="block w-6 h-0.5 bg-gray-700" />

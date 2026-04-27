@@ -15,7 +15,7 @@ export default function Home() {
       <section className="relative h-screen flex items-center text-white overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=2000&q=85"
-          alt="Punta Cana playa"
+          alt="Punta Cana beach"
           fill
           className="object-cover object-center"
           priority
@@ -35,7 +35,7 @@ export default function Home() {
                 {t.hero.cta_tours}
               </Link>
               <a
-                href="https://wa.me/18497391699?text=Hola,%20quiero%20información%20sobre%20tours"
+                href="https://wa.me/18497391699?text=Hi,%20I%20want%20info%20about%20tours"
                 target="_blank" rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl font-semibold text-base transition-all text-center flex items-center justify-center gap-2"
               >
@@ -49,7 +49,7 @@ export default function Home() {
             <div className="mt-8 flex items-center gap-3 text-sm">
               <div className="flex -space-x-3">
                 {[5, 6, 7, 8].map((i) => (
-                  <Image key={i} src={`https://i.pravatar.cc/32?img=${i}`} alt="viajero" width={32} height={32}
+                  <Image key={i} src={`https://i.pravatar.cc/32?img=${i}`} alt="traveler" width={32} height={32}
                     className="rounded-2xl border-2 border-white object-cover" />
                 ))}
               </div>
@@ -172,7 +172,7 @@ export default function Home() {
           <h2 className="text-4xl font-semibold mb-4">{t.cta.title}</h2>
           <p className="text-white/90 mb-8 text-lg">{t.cta.subtitle}</p>
           <a
-            href="https://wa.me/18497391699?text=Hola,%20quiero%20reservar%20un%20tour"
+            href="https://wa.me/18497391699?text=Hi,%20I%20want%20to%20book%20a%20tour"
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-white text-primary font-bold px-10 py-4 rounded-2xl text-lg hover:bg-gray-100 transition-all"
           >
