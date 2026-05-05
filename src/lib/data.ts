@@ -423,6 +423,22 @@ export const tours = [
   },
 
   {
+    id: 38,
+    slug: "saona-classic",
+    title: "Saona Classic",
+    category: "Island",
+    duration: "8 hours",
+    price: 119,
+    maxPrice: 119,
+    rating: 4.9,
+    reviews: 412,
+    image: "https://transportrosario.com/wp-content/uploads/2024/07/01-saona-from-dron.jpg",
+    description: "The most recognized excursion in the Dominican Republic. Catamaran cruise from Bayahibe to Saona Island, natural pool with starfish, virgin beach, lunch and open bar included.",
+    destino: "Punta Cana",
+    badge: "Most Popular",
+    startTimes: "8:00 AM",
+  },
+  {
     id: 37,
     slug: "private-catamaran-snorkel-party",
     title: "Private Catamaran – Snorkel, Natural Pool & Party",
