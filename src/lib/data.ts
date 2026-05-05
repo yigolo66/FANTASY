@@ -7,6 +7,7 @@ export const tours = [
     duration: "8 hours",
     price: 119,
     maxPrice: 119,
+    childPrice: 60,
     rating: 4.9,
     reviews: 412,
     image: "https://transportrosario.com/wp-content/uploads/2024/07/01-saona-from-dron.jpg",

@@ -9,6 +9,7 @@ interface Tour {
   duration: string;
   price: number;
   maxPrice: number;
+  childPrice?: number;
   rating: number;
   reviews: number;
   image: string;
@@ -41,8 +42,16 @@ export default function TourCard({ tour }: { tour: Tour }) {
         </div>
         <div className="flex justify-between items-center">
           <div>
-            <span className="text-2xl font-bold text-primary">${tour.price}</span>
-            <span className="text-gray-400 text-sm"> – ${tour.maxPrice}</span>
+            <div>
+              <span className="text-2xl font-bold text-primary">${tour.price}</span>
+              <span className="text-gray-400 text-sm"> /adult</span>
+            </div>
+            {tour.childPrice && (
+              <div>
+                <span className="text-sm font-semibold text-gray-600">${tour.childPrice}</span>
+                <span className="text-gray-400 text-sm"> /child</span>
+              </div>
+            )}
           </div>
           <Link
             href={`/checkout?tour=${tour.slug}`}
