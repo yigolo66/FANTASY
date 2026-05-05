@@ -10,7 +10,7 @@ export const tours = [
     childPrice: 60,
     rating: 4.9,
     reviews: 412,
-    image: "https://transportrosario.com/wp-content/uploads/2024/07/01-saona-from-dron.jpg",
+    image: "https://transportrosario.com/wp-content/uploads/2024/07/02-saona-dron-view.jpg",
     description: "The most recognized excursion in the Dominican Republic. Catamaran cruise from Bayahibe to Saona Island, natural pool with starfish, virgin beach, lunch and open bar included.",
     destino: "Punta Cana",
     badge: "Most Popular",
