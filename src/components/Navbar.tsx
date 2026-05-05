@@ -1,17 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
   const { lang, t, setLang } = useI18n();
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data?.success) setUser(data.user); })
+      .catch(() => {});
+  }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUser(null);
+    window.location.href = "/";
+  };
 
   const links = [
     { href: "/", label: t.nav.home },
     { href: "/destinos", label: t.nav.destinations },
     { href: "/tours", label: t.nav.tours },
+    { href: "/tours?category=Transportation", label: t.nav.transportation },
     { href: "/blog", label: t.nav.blog },
     { href: "/contacto", label: t.nav.contact },
   ];
@@ -45,6 +60,21 @@ export default function Navbar() {
           <Link href="/contacto" className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-2xl text-sm font-medium transition-all">
             {t.nav.book}
           </Link>
+          {user ? (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">{user.name}</span>
+              <button
+                onClick={handleLogout}
+                className="text-sm text-gray-500 hover:text-red-500 transition-colors"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link href="/login" className="border border-gray-200 hover:border-primary text-gray-600 hover:text-primary px-4 py-2 rounded-2xl text-sm font-medium transition-all">
+              Sign in
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -72,6 +102,18 @@ export default function Navbar() {
           <Link href="/contacto" className="bg-primary text-white text-center py-2 rounded-2xl font-medium mt-2" onClick={() => setOpen(false)}>
             {t.nav.book}
           </Link>
+          {user ? (
+            <button
+              onClick={() => { handleLogout(); setOpen(false); }}
+              className="text-gray-500 hover:text-red-500 font-medium py-1 text-left"
+            >
+              Logout ({user.name})
+            </button>
+          ) : (
+            <Link href="/login" className="text-gray-700 hover:text-primary font-medium py-1" onClick={() => setOpen(false)}>
+              Sign in
+            </Link>
+          )}
         </div>
       )}
     </nav>
