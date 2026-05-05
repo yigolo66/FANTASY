@@ -1,33 +1,17 @@
-import Database from "better-sqlite3";
-import path from "path";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const DB_PATH = path.join(process.cwd(), "auth.db");
+let client: SupabaseClient | null = null;
 
-let db: Database.Database | null = null;
-
-export function getDB(): Database.Database {
-  if (!db) {
-    db = new Database(DB_PATH);
-    db.pragma("journal_mode = WAL");
-    db.pragma("foreign_keys = ON");
-    initSchema(db);
+export function getDB(): SupabaseClient {
+  if (!client) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) {
+      throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
+    }
+    client = createClient(url, key);
   }
-  return db;
-}
-
-function initSchema(db: Database.Database): void {
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      password_hash TEXT NOT NULL,
-      created_at TEXT NOT NULL DEFAULT (datetime('now')),
-      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
-    );
-
-    CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email);
-  `);
+  return client;
 }
 
 export default getDB;

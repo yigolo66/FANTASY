@@ -17,7 +17,7 @@ export interface AuthResult {
 }
 
 const SALT_ROUNDS = 10;
-const GENERIC_CREDENTIALS_ERROR = "Email o contraseña incorrectos";
+const GENERIC_CREDENTIALS_ERROR = "Invalid email or password";
 
 export async function registerUser(input: RegisterData): Promise<AuthResult> {
   const validation = validateRegisterData(input);
@@ -25,16 +25,16 @@ export async function registerUser(input: RegisterData): Promise<AuthResult> {
     return { success: false, errors: validation.errors };
   }
 
-  const existing = findUserByEmail(input.email);
+  const existing = await findUserByEmail(input.email);
   if (existing) {
     return {
       success: false,
-      errors: { email: "Este email ya está registrado" },
+      errors: { email: "This email is already registered" },
     };
   }
 
   const passwordHash = await bcrypt.hash(input.password, SALT_ROUNDS);
-  const user = createUser(input.name, input.email, passwordHash);
+  const user = await createUser(input.name, input.email, passwordHash);
   const publicUser = toPublicUser(user);
   const token = await createSession({ userId: user.id, email: user.email });
 
@@ -47,7 +47,7 @@ export async function loginUser(input: LoginData): Promise<AuthResult> {
     return { success: false, errors: validation.errors };
   }
 
-  const user = findUserByEmail(input.email);
+  const user = await findUserByEmail(input.email);
   if (!user) {
     return {
       success: false,
@@ -78,15 +78,15 @@ export async function updateProfile(
     return { success: false, errors: validation.errors };
   }
 
-  const existing = findUserById(userId);
+  const existing = await findUserById(userId);
   if (!existing) {
     return {
       success: false,
-      errors: { user: "Usuario no encontrado" },
+      errors: { user: "User not found" },
     };
   }
 
-  const updated = updateUserName(userId, name);
+  const updated = await updateUserName(userId, name);
   const publicUser = toPublicUser(updated);
 
   return { success: true, user: publicUser };

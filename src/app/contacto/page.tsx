@@ -66,6 +66,7 @@ export default function ContactoPage() {
                 { href: "https://instagram.com", label: "Instagram", icon: "📸", color: "bg-pink-50 hover:bg-pink-100 text-pink-600" },
                 { href: "https://facebook.com", label: "Facebook", icon: "👍", color: "bg-blue-50 hover:bg-blue-100 text-blue-600" },
                 { href: "https://tiktok.com", label: "TikTok", icon: "🎵", color: "bg-gray-50 hover:bg-gray-100 text-gray-700" },
+                { href: "https://tripadvisor.com", label: "TripAdvisor", icon: "🦉", color: "bg-green-50 hover:bg-green-100 text-green-600" },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-medium transition-colors ${s.color}`}>

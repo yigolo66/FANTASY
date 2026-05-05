@@ -75,6 +75,14 @@ export function validateProfileUpdate(data: { name: string }): ValidationResult 
   };
 }
 
+export function parseLoginData(raw: unknown): LoginData {
+  const obj = raw as Record<string, unknown>;
+  return {
+    email: sanitizeString(String(obj.email ?? "")).trim().toLowerCase(),
+    password: String(obj.password ?? ""),
+  };
+}
+
 export function parseRegisterData(raw: unknown): RegisterData {
   const obj = raw as Record<string, unknown>;
   return {

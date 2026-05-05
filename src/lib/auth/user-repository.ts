@@ -35,47 +35,57 @@ function rowToUser(row: UserRow): User {
   };
 }
 
-export function createUser(
+export async function createUser(
   name: string,
   email: string,
   passwordHash: string
-): User {
+): Promise<User> {
   const db = getDB();
-  const stmt = db.prepare(
-    `INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)`
-  );
-  const result = stmt.run(name, email, passwordHash);
-  const row = db
-    .prepare(`SELECT * FROM users WHERE id = ?`)
-    .get(result.lastInsertRowid) as UserRow;
-  return rowToUser(row);
+  const { data, error } = await db
+    .from("users")
+    .insert({ name, email, password_hash: passwordHash })
+    .select()
+    .single();
+
+  if (error) throw new Error(error.message);
+  return rowToUser(data as UserRow);
 }
 
-export function findUserByEmail(email: string): User | null {
+export async function findUserByEmail(email: string): Promise<User | null> {
   const db = getDB();
-  const row = db
-    .prepare(`SELECT * FROM users WHERE email = ?`)
-    .get(email) as UserRow | undefined;
-  return row ? rowToUser(row) : null;
+  const { data, error } = await db
+    .from("users")
+    .select()
+    .eq("email", email)
+    .single();
+
+  if (error || !data) return null;
+  return rowToUser(data as UserRow);
 }
 
-export function findUserById(id: number): User | null {
+export async function findUserById(id: number): Promise<User | null> {
   const db = getDB();
-  const row = db
-    .prepare(`SELECT * FROM users WHERE id = ?`)
-    .get(id) as UserRow | undefined;
-  return row ? rowToUser(row) : null;
+  const { data, error } = await db
+    .from("users")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (error || !data) return null;
+  return rowToUser(data as UserRow);
 }
 
-export function updateUserName(id: number, name: string): User {
+export async function updateUserName(id: number, name: string): Promise<User> {
   const db = getDB();
-  db.prepare(
-    `UPDATE users SET name = ?, updated_at = datetime('now') WHERE id = ?`
-  ).run(name, id);
-  const row = db
-    .prepare(`SELECT * FROM users WHERE id = ?`)
-    .get(id) as UserRow;
-  return rowToUser(row);
+  const { data, error } = await db
+    .from("users")
+    .update({ name, updated_at: new Date().toISOString() })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw new Error(error.message);
+  return rowToUser(data as UserRow);
 }
 
 export function toPublicUser(user: User): PublicUser {

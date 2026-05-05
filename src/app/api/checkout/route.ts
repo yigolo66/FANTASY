@@ -6,9 +6,18 @@ import {
   type CheckoutRequest,
 } from "@/lib/validators";
 import { findTourBySlug } from "@/lib/checkout-utils";
+import { isRateLimited, getRateLimitKey } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") ?? "unknown";
+    if (isRateLimited(getRateLimitKey(ip, "checkout"))) {
+      return NextResponse.json(
+        { error: "Too many attempts. Try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = (await request.json()) as CheckoutRequest;
 
     // Validate all checkout data (slug, email, date, people, etc.)

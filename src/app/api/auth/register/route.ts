@@ -2,9 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { parseRegisterData, validateRegisterData } from "@/lib/auth/auth-validators";
 import { registerUser } from "@/lib/auth/auth-service";
 import { setSessionCookie } from "@/lib/auth/session";
+import { isRateLimited, getRateLimitKey } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") ?? "unknown";
+    if (isRateLimited(getRateLimitKey(ip, "register"))) {
+      return NextResponse.json(
+        { success: false, error: "Too many attempts. Try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = parseRegisterData(body);
     const validation = validateRegisterData(data);
