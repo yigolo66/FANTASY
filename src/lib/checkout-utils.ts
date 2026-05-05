@@ -3,16 +3,22 @@ import { tours } from "./data";
 export type Tour = (typeof tours)[number];
 
 /**
- * Calculates the total price for a booking.
- * @param unitPrice - Price per person in USD
- * @param numberOfPeople - Number of people
- * @returns Total price (unitPrice * numberOfPeople)
+ * Calculates the total price for a booking including children.
+ * @param unitPrice - Price per adult in USD
+ * @param numberOfPeople - Number of adults
+ * @param childPrice - Price per child in USD (optional)
+ * @param numberOfChildren - Number of children (optional)
+ * @returns Total price
  */
 export function calculateTotal(
   unitPrice: number,
-  numberOfPeople: number
+  numberOfPeople: number,
+  childPrice?: number,
+  numberOfChildren?: number
 ): number {
-  return unitPrice * numberOfPeople;
+  const adultTotal = unitPrice * numberOfPeople;
+  const childTotal = (childPrice || 0) * (numberOfChildren || 0);
+  return adultTotal + childTotal;
 }
 
 /**

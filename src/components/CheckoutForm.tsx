@@ -17,6 +17,7 @@ interface CheckoutFormData {
   phone: string;
   tourDate: string;
   numberOfPeople: number;
+  numberOfChildren: number;
 }
 
 export default function CheckoutForm({ tour }: CheckoutFormProps) {
@@ -35,10 +36,12 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
       phone: "",
       tourDate: "",
       numberOfPeople: 1,
+      numberOfChildren: 0,
     },
   });
 
   const numberOfPeople = watch("numberOfPeople");
+  const numberOfChildren = watch("numberOfChildren");
   const today = new Date().toISOString().split("T")[0];
 
   const inputClass =
@@ -126,7 +129,7 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
           </div>
           <div>
             <label className="text-sm font-medium text-gray-700 mb-1 block">
-              {t.checkout.people} *
+              {t.checkout.people} (Adults) *
             </label>
             <input
               {...register("numberOfPeople", {
@@ -146,6 +149,26 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
           </div>
         </div>
 
+        {/* Children */}
+        {tour.childPrice && (
+          <div>
+            <label className="text-sm font-medium text-gray-700 mb-1 block">
+              Children (under 12) — ${tour.childPrice} each
+            </label>
+            <input
+              {...register("numberOfChildren", {
+                min: { value: 0, message: "Min 0" },
+                max: { value: 20, message: "Max 20" },
+                valueAsNumber: true,
+              })}
+              type="number"
+              min={0}
+              max={20}
+              className={inputClass}
+            />
+          </div>
+        )}
+
         {/* PayPal Button */}
         <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "USD" }}>
           <PayPalButtons
@@ -153,7 +176,12 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
             createOrder={async (_data, actions) => {
               const valid = await trigger();
               if (!valid) throw new Error("Invalid form");
-              const total = calculateTotal(tour.price, Number(numberOfPeople) || 1);
+              const total = calculateTotal(
+                tour.price,
+                Number(numberOfPeople) || 1,
+                tour.childPrice,
+                Number(numberOfChildren) || 0
+              );
               return actions.order.create({
                 intent: "CAPTURE",
                 purchase_units: [{
@@ -182,6 +210,8 @@ export default function CheckoutForm({ tour }: CheckoutFormProps) {
           tourImage={tour.image}
           unitPrice={tour.price}
           numberOfPeople={Number(numberOfPeople) || 1}
+          childPrice={tour.childPrice}
+          numberOfChildren={Number(numberOfChildren) || 0}
         />
       </div>
     </div>

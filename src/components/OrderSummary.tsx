@@ -9,6 +9,8 @@ interface OrderSummaryProps {
   tourImage: string;
   unitPrice: number;
   numberOfPeople: number;
+  childPrice?: number;
+  numberOfChildren?: number;
 }
 
 export default function OrderSummary({
@@ -16,9 +18,11 @@ export default function OrderSummary({
   tourImage,
   unitPrice,
   numberOfPeople,
+  childPrice,
+  numberOfChildren = 0,
 }: OrderSummaryProps) {
   const { t } = useI18n();
-  const total = calculateTotal(unitPrice, numberOfPeople);
+  const total = calculateTotal(unitPrice, numberOfPeople, childPrice, numberOfChildren);
 
   return (
     <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
@@ -36,15 +40,19 @@ export default function OrderSummary({
           {tourTitle}
         </h3>
         <div className="flex justify-between items-center mb-2">
-          <span className="text-gray-500 text-sm">{t.checkout.unitPrice}</span>
+          <span className="text-gray-500 text-sm">Adults × {numberOfPeople}</span>
           <span className="text-gray-700 font-medium">
-            ${formatPriceUSD(unitPrice)}
+            ${formatPriceUSD(unitPrice * numberOfPeople)}
           </span>
         </div>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-gray-500 text-sm">{t.checkout.people}</span>
-          <span className="text-gray-700 font-medium">{numberOfPeople}</span>
-        </div>
+        {childPrice && numberOfChildren > 0 && (
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-gray-500 text-sm">Children × {numberOfChildren}</span>
+            <span className="text-gray-700 font-medium">
+              ${formatPriceUSD(childPrice * numberOfChildren)}
+            </span>
+          </div>
+        )}
         <hr className="my-3 border-gray-200" />
         <div className="flex justify-between items-center">
           <span className="font-semibold text-gray-900">{t.checkout.total}</span>
